@@ -1,12 +1,12 @@
 ---
 // Home page template
 import Layout from '../layouts/Layout.astro';
-import { getLanguageFromURL, useTranslations } from '../utils/i18n';
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
 import ProductCard from '../components/ProductCard.astro';
 import { getCollection } from 'astro:content';
 
 // Get the current language from URL
-const lang = getLanguageFromURL(Astro.url.pathname) || 'tr';
+const lang = getLangFromUrl(Astro.url) || 'tr';
 const t = useTranslations(lang);
 
 // Get featured products for the homepage
