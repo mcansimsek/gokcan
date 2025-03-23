@@ -1,0 +1,70 @@
+---
+// Products listing page template
+import Layout from '../../../layouts/Layout.astro';
+import { getLanguageFromURL, useTranslations } from '../../../utils/i18n';
+import CategoryList from '../../../components/CategoryList.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get the current language from URL
+const lang = getLanguageFromURL(Astro.url.pathname) || 'tr';
+const t = useTranslations(lang);
+
+// Get all products for the current language
+const allProducts = await getCollection('products', (entry) => {
+  return entry.slug.startsWith(`${lang}/`);
+});
+
+// Get unique categories
+const categories = [...new Set(allProducts.map(product => product.data.category))];
+---
+
+<Layout title={t('products.title')} description={t('products.description')} lang={lang}>
+  <section class="py-10 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+        {t('products.heading')}
+      </h1>
+      
+      <!-- Category Filters -->
+      <div class="mb-12">
+        <CategoryList categories={categories} activeCategorySlug={null} lang={lang} />
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allProducts.map((product) => (
+          <ProductCard 
+            product={product.data} 
+            url={`/${lang}/products/${product.data.category}/${product.slug.split('/')[1]}`}
+          />
+        ))}
+      </div>
+      
+      <!-- Empty State -->
+      {allProducts.length === 0 && (
+        <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+          <p>{t('products.noProductsFound')}</p>
+        </div>
+      )}
+    </div>
+  </section>
+  
+  <!-- Contact CTA Section -->
+  <section class="py-12 bg-stone-800 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        {t('products.interestedCTA')}
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-6">
+        {t('products.customOrderText')}
+      </p>
+      <a 
+        href={`/${lang}/contact`} 
+        class="px-6 py-3 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg inline-block transition duration-300"
+      >
+        {t('products.contactUs')}
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,101 @@
+---
+// Product detail page template
+import Layout from '../../../../layouts/Layout.astro';
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import { getLanguageFromURL, useTranslations } from '../../../../utils/i18n';
+import ShareButtons from '../../../../components/ShareButtons.astro';
+import { getCollection } from 'astro:content';
+
+// Get params from URL for static paths
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  
+  return products.map(product => {
+    const [lang, slug] = product.slug.split('/');
+    return {
+      params: { 
+        lang, 
+        category: product.data.category, 
+        product: slug 
+      },
+      props: { product },
+    };
+  });
+}
+
+// Get the current product, language, and category
+const { product } = Astro.props;
+const { lang, category } = Astro.params;
+const t = useTranslations(lang || 'tr');
+
+// Process the content
+const { Content } = await product.render();
+
+// Get recommended products (same category, different product)
+const recommendedProducts = await getCollection('products', (entry) => {
+  return entry.slug.startsWith(`${lang}/`) && 
+         entry.data.category === category &&
+         entry.slug !== product.slug;
+});
+
+// Limit to 3 recommended products
+const limitedRecommendations = recommendedProducts.slice(0, 3);
+---
+
+<Layout 
+  title={`${product.data.title} - ${t('products.title')}`} 
+  description={product.data.description}
+  image={product.data.images[0]}
+  lang={lang || 'tr'}
+>
+  <ProductLayout product={product.data}>
+    <!-- Product Content -->
+    <div class="prose dark:prose-invert max-w-none mb-12">
+      <Content />
+    </div>
+    
+    <!-- Contact and Share Section -->
+    <div class="flex flex-col sm:flex-row gap-6 items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-8 mt-8">
+      <a 
+        href={`/${lang}/contact?product=${encodeURIComponent(product.data.title)}`} 
+        class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-white font-medium rounded-lg transition duration-300"
+      >
+        {t('products.inquireAboutProduct')}
+      </a>
+      
+      <ShareButtons 
+        title={product.data.title}
+        url={Astro.url.href}
+      />
+    </div>
+    
+    <!-- Recommended Products Section -->
+    {limitedRecommendations.length > 0 && (
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold mb-8">
+          {t('products.relatedProducts')}
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {limitedRecommendations.map((relatedProduct) => (
+            <a 
+              href={`/${lang}/products/${category}/${relatedProduct.slug.split('/')[1]}`}
+              class="group block overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition duration-300"
+            >
+              <div class="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={relatedProduct.data.images[0]} 
+                  alt={relatedProduct.data.title} 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-lg">{relatedProduct.data.title}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </ProductLayout>
+</Layout>

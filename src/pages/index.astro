@@ -1,11 +1,161 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// Home page template
 import Layout from '../layouts/Layout.astro';
+import { getLanguageFromURL, useTranslations } from '../utils/i18n';
+import ProductCard from '../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Get the current language from URL
+const lang = getLanguageFromURL(Astro.url.pathname) || 'tr';
+const t = useTranslations(lang);
+
+// Get featured products for the homepage
+const allProducts = await getCollection('products', (entry) => {
+  return entry.slug.startsWith(`${lang}/`) && entry.data.featured;
+});
+
+// Get the hero image path
+const heroImage = '/images/backgrounds/hero-background.jpg';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title={t('home.title')} description={t('home.description')} lang={lang}>
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-32">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <img 
+        src={heroImage} 
+        alt={t('home.heroAlt')} 
+        class="w-full h-full object-cover opacity-70 dark:opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70 dark:from-black/60 dark:to-black/80"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          {t('home.heroTitle')}
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-100 mb-8">
+          {t('home.heroSubtitle')}
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a 
+            href={`/${lang}/products`} 
+            class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-white font-medium rounded-lg transition duration-300"
+          >
+            {t('home.viewProducts')}
+          </a>
+          <a 
+            href={`/${lang}/contact`} 
+            class="px-6 py-3 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg transition duration-300"
+          >
+            {t('home.contactUs')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-10 text-center">
+        {t('home.featuredProducts')}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allProducts.map((product) => (
+          <ProductCard 
+            product={product.data} 
+            url={`/${lang}/products/${product.data.category}/${product.slug.split('/')[1]}`}
+          />
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a 
+          href={`/${lang}/products`} 
+          class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-white font-medium rounded-lg inline-block transition duration-300"
+        >
+          {t('home.viewAllProducts')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section Preview -->
+  <section class="py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <div class="md:w-1/2">
+          <img 
+            src="/images/backgrounds/about-preview.jpg" 
+            alt={t('home.aboutImageAlt')} 
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="text-3xl font-bold mb-6">
+            {t('home.aboutTitle')}
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-6">
+            {t('home.aboutPreview')}
+          </p>
+          <a 
+            href={`/${lang}/about`} 
+            class="inline-block font-medium text-stone-800 dark:text-stone-300 hover:underline"
+          >
+            {t('home.readMore')} →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Categories Preview Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-10 text-center">
+        {t('home.exploreCategories')}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {['basalt', 'granite', 'travertine'].map((category) => (
+          <a 
+            href={`/${lang}/products/${category}`}
+            class="group relative overflow-hidden rounded-lg aspect-[4/3] shadow-lg"
+          >
+            <img 
+              src={`/images/categories/${category}.jpg`} 
+              alt={t(`categories.${category}`)} 
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+              <h3 class="text-xl font-bold text-white p-6 w-full">
+                {t(`categories.${category}`)}
+              </h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact CTA Section -->
+  <section class="py-16 bg-stone-800 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        {t('home.contactCTA')}
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-8">
+        {t('home.contactDescription')}
+      </p>
+      <a 
+        href={`/${lang}/contact`} 
+        class="px-8 py-4 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg inline-block transition duration-300"
+      >
+        {t('home.getInTouch')}
+      </a>
+    </div>
+  </section>
 </Layout>

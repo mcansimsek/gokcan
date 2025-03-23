@@ -1,0 +1,76 @@
+---
+// Category page template
+import Layout from '../../../../layouts/Layout.astro';
+import CategoryLayout from '../../../../layouts/CategoryLayout.astro';
+import { getLanguageFromURL, useTranslations } from '../../../../utils/i18n';
+import ProductCard from '../../../../components/ProductCard.astro';
+import CategoryList from '../../../../components/CategoryList.astro';
+import { getCollection } from 'astro:content';
+
+// Get params from URL
+export async function getStaticPaths() {
+  // Define the available categories
+  const categories = ['basalt', 'granite', 'travertine'];
+  const languages = ['tr', 'en', 'de'];
+  
+  return languages.flatMap(lang => 
+    categories.map(category => ({
+      params: { lang, category },
+    }))
+  );
+}
+
+// Get the current language and category from URL
+const { lang, category } = Astro.params;
+const t = useTranslations(lang || 'tr');
+
+// Get all products in this category for the current language
+const categoryProducts = await getCollection('products', (entry) => {
+  return entry.slug.startsWith(`${lang}/`) && entry.data.category === category;
+});
+
+// Get all categories for the category list component
+const allProducts = await getCollection('products', (entry) => {
+  return entry.slug.startsWith(`${lang}/`);
+});
+const categories = [...new Set(allProducts.map(product => product.data.category))];
+
+// Get the category information
+const categoryTitle = t(`categories.${category}`);
+const categoryDescription = t(`categoryDescriptions.${category}`);
+const categoryImage = `/images/categories/${category}-banner.jpg`;
+---
+
+<Layout 
+  title={`${categoryTitle} - ${t('products.title')}`} 
+  description={categoryDescription}
+  lang={lang || 'tr'}
+>
+  <CategoryLayout 
+    categoryTitle={categoryTitle}
+    categoryDescription={categoryDescription}
+    categoryImage={categoryImage}
+  >
+    <!-- Category Filters -->
+    <div class="mb-12">
+      <CategoryList categories={categories} activeCategorySlug={category} lang={lang} />
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {categoryProducts.map((product) => (
+        <ProductCard 
+          product={product.data} 
+          url={`/${lang}/products/${category}/${product.slug.split('/')[1]}`}
+        />
+      ))}
+    </div>
+    
+    <!-- Empty State -->
+    {categoryProducts.length === 0 && (
+      <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+        <p>{t('products.noCategoryProductsFound')}</p>
+      </div>
+    )}
+  </CategoryLayout>
+</Layout>

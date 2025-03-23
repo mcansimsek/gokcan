@@ -1,0 +1,127 @@
+---
+// About page template
+import Layout from '../../layouts/Layout.astro';
+import { getLanguageFromURL, useTranslations } from '../../utils/i18n';
+
+// Get the current language from URL
+const lang = getLanguageFromURL(Astro.url.pathname) || 'tr';
+const t = useTranslations(lang);
+
+// Define the banner image
+const bannerImage = '/images/backgrounds/about-banner.jpg';
+---
+
+<Layout title={t('about.title')} description={t('about.description')} lang={lang}>
+  <!-- Banner Section -->
+  <section class="relative py-20">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <img 
+        src={bannerImage} 
+        alt={t('about.bannerAlt')} 
+        class="w-full h-full object-cover opacity-70 dark:opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70 dark:from-black/60 dark:to-black/80"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+        {t('about.heading')}
+      </h1>
+    </div>
+  </section>
+  
+  <!-- About Content Section -->
+  <section class="py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="prose dark:prose-invert max-w-none">
+          <h2>{t('about.ourStoryTitle')}</h2>
+          <p>{t('about.ourStoryContent')}</p>
+          
+          <h2 class="mt-12">{t('about.missionTitle')}</h2>
+          <p>{t('about.missionContent')}</p>
+          
+          <h2 class="mt-12">{t('about.qualityTitle')}</h2>
+          <p>{t('about.qualityContent')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Feature Highlights Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">
+        {t('about.whyChooseUs')}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-stone-700 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">{t('about.feature1Title')}</h3>
+          <p class="text-gray-600 dark:text-gray-400">{t('about.feature1Content')}</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-stone-700 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">{t('about.feature2Title')}</h3>
+          <p class="text-gray-600 dark:text-gray-400">{t('about.feature2Content')}</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-stone-700 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">{t('about.feature3Title')}</h3>
+          <p class="text-gray-600 dark:text-gray-400">{t('about.feature3Content')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team/Company Image Section -->
+  <section class="py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <img 
+          src="/images/backgrounds/company-image.jpg" 
+          alt={t('about.companyImageAlt')} 
+          class="w-full h-auto rounded-lg shadow-lg mb-8"
+        />
+        <div class="text-center">
+          <p class="text-gray-600 dark:text-gray-400 italic">
+            {t('about.companyImageCaption')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact CTA Section -->
+  <section class="py-16 bg-stone-800 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        {t('about.contactCTA')}
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-8">
+        {t('about.contactDescription')}
+      </p>
+      <a 
+        href={`/${lang}/contact`} 
+        class="px-8 py-4 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg inline-block transition duration-300"
+      >
+        {t('about.getInTouch')}
+      </a>
+    </div>
+  </section>
+</Layout>
