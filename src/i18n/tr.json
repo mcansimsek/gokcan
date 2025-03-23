@@ -1,0 +1,88 @@
+{
+    "meta": {
+      "title": "Gökcan Doğaltaşlar | Yüksek Kaliteli Doğal Taşlar",
+      "description": "Gökcan Doğaltaşlar, yüksek kaliteli granit, bazalt ve traverten ürünleri sunar. İç ve dış mekan projeleri için doğal taş çözümleri."
+    },
+    "nav": {
+      "home": "Anasayfa",
+      "products": "Ürünler",
+      "about": "Hakkımızda",
+      "contact": "İletişim"
+    },
+    "home": {
+      "hero": {
+        "title": "Doğanın Estetiği",
+        "subtitle": "Yüksek Kaliteli Doğal Taşlar",
+        "cta": "Ürünleri Keşfedin"
+      },
+      "featuredProducts": "Öne Çıkan Ürünler",
+      "viewAll": "Tümünü Görüntüle",
+      "about": {
+        "title": "Gökcan Doğaltaşlar Hakkında",
+        "description": "Gökcan Doğaltaşlar, 20 yılı aşkın tecrübesiyle doğal taş endüstrisine hizmet vermektedir. Granit, bazalt ve traverten gibi birçok doğal taş çeşidini müşterilerimize sunuyoruz.",
+        "cta": "Daha Fazla Bilgi"
+      }
+    },
+    "products": {
+      "title": "Ürünlerimiz",
+      "description": "En yüksek kalitede doğal taş ürünlerimizi keşfedin.",
+      "allProducts": "Tüm Ürünler",
+      "categories": "Kategoriler",
+      "featured": "Öne Çıkan",
+      "details": "Ürün Detayları",
+      "contact": "İletişime Geçin",
+      "noProducts": "Bu kategoride ürün bulunamadı."
+    },
+    "categories": {
+      "basalt": "Bazalt",
+      "granite": "Granit",
+      "travertine": "Traverten"
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "subtitle": "20 Yılı Aşkın Tecrübe",
+      "story": "Hikayemiz",
+      "mission": "Misyonumuz",
+      "vision": "Vizyonumuz",
+      "values": "Değerlerimiz",
+      "team": "Ekibimiz"
+    },
+    "contact": {
+      "title": "İletişim",
+      "subtitle": "Bize Ulaşın",
+      "form": {
+        "name": "İsim",
+        "email": "E-posta",
+        "subject": "Konu",
+        "message": "Mesaj",
+        "submit": "Gönder"
+      },
+      "address": "Adres",
+      "phone": "Telefon",
+      "email": "E-posta"
+    },
+    "footer": {
+      "company": "Şirket",
+      "navigation": "Navigasyon",
+      "contact": "İletişim",
+      "rights": "Tüm Hakları Saklıdır.",
+      "address": "1234 Sokak, No: 56, Ankara, Türkiye",
+      "tagline": "Doğal taşın güzelliği ve dayanıklılığı ile yaşam alanlarınızı dönüştürün."
+    },
+    "theme": {
+      "toggle": "Tema Değiştir",
+      "dark": "Koyu Tema",
+      "light": "Açık Tema"
+    },
+    "share": {
+      "title": "Paylaş",
+      "whatsapp": "WhatsApp",
+      "facebook": "Facebook",
+      "twitter": "Twitter"
+    },
+    "notFound": {
+      "title": "Sayfa Bulunamadı",
+      "description": "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+      "backHome": "Anasayfaya Dön"
+    }
+  }

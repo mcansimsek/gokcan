@@ -1,0 +1,88 @@
+{
+    "meta": {
+      "title": "Gökcan Natursteine | Hochwertige Natursteine",
+      "description": "Gökcan Natursteine bietet hochwertige Granit-, Basalt- und Travertinprodukte an. Natursteinlösungen für Innen- und Außenprojekte."
+    },
+    "nav": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "about": "Über Uns",
+      "contact": "Kontakt"
+    },
+    "home": {
+      "hero": {
+        "title": "Die Ästhetik der Natur",
+        "subtitle": "Hochwertige Natursteine",
+        "cta": "Produkte Entdecken"
+      },
+      "featuredProducts": "Hervorgehobene Produkte",
+      "viewAll": "Alle Anzeigen",
+      "about": {
+        "title": "Über Gökcan Natursteine",
+        "description": "Gökcan Natursteine bedient die Natursteinbranche mit über 20 Jahren Erfahrung. Wir bieten unseren Kunden viele Natursteinvarianten wie Granit, Basalt und Travertin an.",
+        "cta": "Mehr Erfahren"
+      }
+    },
+    "products": {
+      "title": "Unsere Produkte",
+      "description": "Entdecken Sie unsere Natursteinprodukte von höchster Qualität.",
+      "allProducts": "Alle Produkte",
+      "categories": "Kategorien",
+      "featured": "Hervorgehoben",
+      "details": "Produktdetails",
+      "contact": "Kontaktieren Sie Uns",
+      "noProducts": "Keine Produkte in dieser Kategorie gefunden."
+    },
+    "categories": {
+      "basalt": "Basalt",
+      "granite": "Granit",
+      "travertine": "Travertin"
+    },
+    "about": {
+      "title": "Über Uns",
+      "subtitle": "Über 20 Jahre Erfahrung",
+      "story": "Unsere Geschichte",
+      "mission": "Unsere Mission",
+      "vision": "Unsere Vision",
+      "values": "Unsere Werte",
+      "team": "Unser Team"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "subtitle": "Nehmen Sie Kontakt Auf",
+      "form": {
+        "name": "Name",
+        "email": "E-Mail",
+        "subject": "Betreff",
+        "message": "Nachricht",
+        "submit": "Absenden"
+      },
+      "address": "Adresse",
+      "phone": "Telefon",
+      "email": "E-Mail"
+    },
+    "footer": {
+      "company": "Unternehmen",
+      "navigation": "Navigation",
+      "contact": "Kontakt",
+      "rights": "Alle Rechte Vorbehalten.",
+      "address": "1234 Straße, Nr: 56, Ankara, Türkei",
+      "tagline": "Verwandeln Sie Ihre Wohnräume mit der Schönheit und Haltbarkeit von Naturstein."
+    },
+    "theme": {
+      "toggle": "Thema Umschalten",
+      "dark": "Dunkles Thema",
+      "light": "Helles Thema"
+    },
+    "share": {
+      "title": "Teilen",
+      "whatsapp": "WhatsApp",
+      "facebook": "Facebook",
+      "twitter": "Twitter"
+    },
+    "notFound": {
+      "title": "Seite Nicht Gefunden",
+      "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+      "backHome": "Zurück zur Startseite"
+    }
+  }

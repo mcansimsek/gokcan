@@ -1,0 +1,73 @@
+---
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const languages = [
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+];
+
+// Function to get equivalent URL in different language
+const getLanguageUrl = (targetLang: string) => {
+  const currentPath = Astro.url.pathname;
+  const pathSegments = currentPath.split('/').filter(Boolean);
+  
+  // If the first segment is a language code, replace it
+  if (pathSegments.length > 0 && ['tr', 'en', 'de'].includes(pathSegments[0])) {
+    pathSegments[0] = targetLang;
+  } else {
+    // If no language code in path, add the target language
+    pathSegments.unshift(targetLang);
+  }
+  
+  return '/' + pathSegments.join('/');
+};
+---
+
+<div class="relative inline-block text-left">
+  <button type="button" id="language-menu-button" class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 rounded-md border border-slate-300 dark:border-slate-600 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none">
+    <span class="mr-2">{languages.find(l => l.code === lang)?.flag}</span>
+    <span>{languages.find(l => l.code === lang)?.name}</span>
+    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <div id="language-menu" class="hidden absolute right-0 z-10 mt-2 w-40 rounded-md bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="language-menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+      {languages.map((language) => (
+        <a 
+          href={getLanguageUrl(language.code)} 
+          class={`flex items-center px-4 py-2 text-sm ${lang === language.code ? 'bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'}`} 
+          role="menuitem" 
+          tabindex="-1"
+        >
+          <span class="mr-2">{language.flag}</span>
+          <span>{language.name}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Toggle language dropdown
+  const button = document.getElementById('language-menu-button');
+  const menu = document.getElementById('language-menu');
+  
+  if (button && menu) {
+    button.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+    
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!button.contains(event.target as Node) && !menu.contains(event.target as Node)) {
+        menu.classList.add('hidden');
+      }
+    });
+  }
+</script>

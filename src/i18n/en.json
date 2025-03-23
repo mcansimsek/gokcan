@@ -1,0 +1,88 @@
+{
+    "meta": {
+      "title": "Gökcan Natural Stones | High Quality Natural Stones",
+      "description": "Gökcan Natural Stones offers high quality granite, basalt, and travertine products. Natural stone solutions for interior and exterior projects."
+    },
+    "nav": {
+      "home": "Home",
+      "products": "Products",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "home": {
+      "hero": {
+        "title": "The Aesthetics of Nature",
+        "subtitle": "High Quality Natural Stones",
+        "cta": "Explore Products"
+      },
+      "featuredProducts": "Featured Products",
+      "viewAll": "View All",
+      "about": {
+        "title": "About Gökcan Natural Stones",
+        "description": "Gökcan Natural Stones has been serving the natural stone industry with over 20 years of experience. We offer many natural stone varieties such as granite, basalt, and travertine to our customers.",
+        "cta": "Learn More"
+      }
+    },
+    "products": {
+      "title": "Our Products",
+      "description": "Discover our natural stone products of the highest quality.",
+      "allProducts": "All Products",
+      "categories": "Categories",
+      "featured": "Featured",
+      "details": "Product Details",
+      "contact": "Contact Us",
+      "noProducts": "No products found in this category."
+    },
+    "categories": {
+      "basalt": "Basalt",
+      "granite": "Granite",
+      "travertine": "Travertine"
+    },
+    "about": {
+      "title": "About Us",
+      "subtitle": "Over 20 Years of Experience",
+      "story": "Our Story",
+      "mission": "Our Mission",
+      "vision": "Our Vision",
+      "values": "Our Values",
+      "team": "Our Team"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Get in Touch",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message",
+        "submit": "Submit"
+      },
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "footer": {
+      "company": "Company",
+      "navigation": "Navigation",
+      "contact": "Contact",
+      "rights": "All Rights Reserved.",
+      "address": "1234 Street, No: 56, Ankara, Turkey",
+      "tagline": "Transform your living spaces with the beauty and durability of natural stone."
+    },
+    "theme": {
+      "toggle": "Toggle Theme",
+      "dark": "Dark Theme",
+      "light": "Light Theme"
+    },
+    "share": {
+      "title": "Share",
+      "whatsapp": "WhatsApp",
+      "facebook": "Facebook",
+      "twitter": "Twitter"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to Home"
+    }
+  }

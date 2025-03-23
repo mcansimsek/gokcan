@@ -1,0 +1,21 @@
+---
+import ProductLayout from './ProductLayout.astro';
+import { useTranslations } from '../i18n/ui';
+import { getLangFromUrl } from '../utils/i18n';
+
+interface Props {
+  category: string;
+}
+
+const { category } = Astro.props;
+const url = Astro.url;
+const lang = getLangFromUrl(url);
+const t = useTranslations(lang);
+
+const categoryTitle = t(`products.categories.${category}`);
+---
+
+<ProductLayout title={categoryTitle}>
+  <h2 class="text-2xl font-semibold mb-6">{categoryTitle}</h2>
+  <slot />
+</ProductLayout>
