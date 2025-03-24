@@ -3,6 +3,20 @@
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../utils/i18n';
 
+
+// Get params from URL
+export async function getStaticPaths() {
+  // Define the available categories
+  const categories = ['basalt', 'granite', 'travertine'];
+  const languages = ['tr', 'en', 'de'];
+  
+  return languages.flatMap(lang => 
+    categories.map(category => ({
+      params: { lang, category },
+    }))
+  );
+}
+
 // Get the current language from URL
 const lang = getLangFromUrl(Astro.url) || 'tr';
 const t = useTranslations(lang);

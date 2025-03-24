@@ -6,6 +6,19 @@ import CategoryList from '../../../components/CategoryList.astro';
 import ProductCard from '../../../components/ProductCard.astro';
 import { getCollection } from 'astro:content';
 
+// Get params from URL
+export async function getStaticPaths() {
+  // Define the available categories
+  const categories = ['basalt', 'granite', 'travertine'];
+  const languages = ['tr', 'en', 'de'];
+  
+  return languages.flatMap(lang => 
+    categories.map(category => ({
+      params: { lang, category },
+    }))
+  );
+}
+
 // Get the current language from URL
 const lang = getLangFromUrl(Astro.url) || 'tr';
 const t = useTranslations(lang);
