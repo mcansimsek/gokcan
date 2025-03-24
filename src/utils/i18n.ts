@@ -31,3 +31,12 @@ export function useTranslations(lang: keyof typeof ui) {
     return value as string;
   }
 }
+
+// Add the missing getRelativeLocaleUrl function
+export function getRelativeLocaleUrl(lang: keyof typeof ui, path: string) {
+  // Ensure path starts without a slash
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  
+  // Create and return the localized URL
+  return `/${lang}/${cleanPath}`.replace(/\/+/g, '/').replace(/\/$/, '');
+}

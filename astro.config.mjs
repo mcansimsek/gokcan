@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tailwind from "@tailwindcss/vite";
+import tailwindcss from "@tailwindcss/vite";
 import {i18n, filterSitemapByDefaultLocale} from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
 
@@ -26,7 +26,7 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwind()]
+    plugins: [tailwindcss()]
   },
   // This ensures we can serve images from public directory
   site: 'https://gokcan-dogaltaslar.com',
