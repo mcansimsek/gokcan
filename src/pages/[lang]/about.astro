@@ -1,10 +1,10 @@
 ---
 // About page template
 import Layout from '../../layouts/Layout.astro';
-import { getLanguageFromURL, useTranslations } from '../../utils/i18n';
+import { getLangFromUrl, useTranslations } from '../../utils/i18n';
 
 // Get the current language from URL
-const lang = getLanguageFromURL(Astro.url.pathname) || 'tr';
+const lang = getLangFromUrl(Astro.url) || 'tr';
 const t = useTranslations(lang);
 
 // Define the banner image
