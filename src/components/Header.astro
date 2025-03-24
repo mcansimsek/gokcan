@@ -14,19 +14,12 @@ const t = useTranslations(lang);
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <a href={getRelativeLocaleUrl(lang, '/')} class="flex items-center">
-        <img src="/images/logo/logo.png" alt="Gökcan Doğaltaşlar" class="h-10 w-auto" />
-        <span class="ml-3 text-xl font-bold text-gray-900 dark:text-white">{t('site.title')}</span>
+        <img src="/images/logo/logo.png" alt="Gökcan Doğaltaşlar" class="h-8 w-auto" />
+        <span class="ml-2 text-lg font-bold text-gray-900 dark:text-white hidden sm:inline">{t('site.title')}</span>
       </a>
       
-      <!-- Navigation -->
-      <nav class="hidden md:flex space-x-6">
-        <a href={getRelativeLocaleUrl(lang, '/products')} class="hover:text-accent transition-colors">{t('nav.products')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/about')} class="hover:text-accent transition-colors">{t('nav.about')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/contact')} class="hover:text-accent transition-colors">{t('nav.contact')}</a>
-      </nav>
-      
       <!-- Controls -->
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2 md:space-x-4">
         <LanguageSwitcher />
         <ThemeToggle />
         
@@ -36,15 +29,6 @@ const t = useTranslations(lang);
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-      </div>
-    </div>
-    
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-2">
-        <a href={getRelativeLocaleUrl(lang, '/products')} class="py-2 hover:text-accent transition-colors">{t('nav.products')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/about')} class="py-2 hover:text-accent transition-colors">{t('nav.about')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/contact')} class="py-2 hover:text-accent transition-colors">{t('nav.contact')}</a>
       </div>
     </div>
   </div>

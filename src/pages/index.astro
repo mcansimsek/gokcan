@@ -32,22 +32,22 @@ const heroImage = '/images/backgrounds/hero-background.jpg';
     
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           {t('home.heroTitle')}
         </h1>
-        <p class="text-xl md:text-2xl text-gray-100 mb-8">
+        <p class="text-lg md:text-xl lg:text-2xl text-gray-100 mb-8">
           {t('home.heroSubtitle')}
         </p>
         <div class="flex flex-wrap gap-4">
           <a 
             href={`/${lang}/products`} 
-            class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-white font-medium rounded-lg transition duration-300"
+            class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-white font-medium rounded-lg transition duration-300 inline-block"
           >
             {t('home.viewProducts')}
           </a>
           <a 
             href={`/${lang}/contact`} 
-            class="px-6 py-3 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg transition duration-300"
+            class="px-6 py-3 bg-white hover:bg-gray-100 text-stone-900 font-medium rounded-lg transition duration-300 inline-block"
           >
             {t('home.contactUs')}
           </a>
